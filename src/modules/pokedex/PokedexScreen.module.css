@@ -1,0 +1,181 @@
+/* Bar that stays at the top of the screen */
+.toolbarWrap {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding-top: 12px;
+  background: linear-gradient(var(--background) 50%, transparent 50%);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 20px 10px 22px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-hover);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 8px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.searchBar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  padding: 0 5px 0 18px;
+  border-radius: 16px;
+  background: var(--surface-soft);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.searchIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--primary);
+  box-shadow: 0 6px 14px rgba(255, 83, 80, 0.45);
+}
+
+.count {
+  min-width: 110px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.count strong {
+  font-size: 18px;
+  color: var(--text);
+}
+
+/* Type filter: one colored button per type */
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.chip:hover {
+  transform: translateY(-2px);
+}
+
+.chipActive {
+  border-color: transparent;
+  font-weight: 700;
+  color: var(--badge-text);
+}
+
+.chipActive .dot {
+  display: none;
+}
+
+.chipAll {
+  border-color: var(--text);
+  background: var(--text);
+  font-weight: 700;
+  color: var(--surface);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.moreButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 36px auto 0;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow-hover);
+  font-size: 15px;
+  font-weight: 700;
+  transition: transform 0.15s ease;
+}
+
+.moreButton:hover {
+  transform: translateY(-3px);
+}
+
+.error {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border: 1px solid #fecdca;
+  border-radius: 14px;
+  background: #fef3f2;
+  font-size: 14px;
+  font-weight: 500;
+  color: #d92d20;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 64px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.emptyIcon {
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 4px 18px;
+  margin-top: 8px;
+}

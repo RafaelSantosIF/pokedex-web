@@ -1,0 +1,232 @@
+/* A giant Poké Ball that covers the whole screen */
+.screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.top,
+.bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top {
+  top: 0;
+  justify-content: flex-end;
+  padding-bottom: 120px;
+  border-bottom: 10px solid var(--text);
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 255, 255, 0.25),
+      transparent 45%
+    ),
+    linear-gradient(180deg, #ff6f6c, #e8403d);
+}
+
+.bottom {
+  bottom: 0;
+  justify-content: flex-start;
+  gap: 16px;
+  padding-top: 120px;
+  border-top: 10px solid var(--text);
+  background: var(--background);
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  color: #ffffff;
+  text-shadow: 0 6px 0 rgba(11, 26, 58, 0.25);
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* The "..." after the text appear one by one */
+.dots::after {
+  content: "...";
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  vertical-align: bottom;
+  animation: dots 1.2s steps(4) infinite;
+}
+
+.progress {
+  width: 240px;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--border);
+}
+
+.progressFill {
+  width: 40%;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--primary);
+  animation: slide 1.1s ease-in-out infinite;
+}
+
+.starters {
+  display: flex;
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.sprite {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  animation: hop 0.9s ease-in-out infinite;
+}
+
+.sprite:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.sprite:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.sprite:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+/* Button in the middle of the Poké Ball */
+.button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 14px solid var(--text);
+  border-radius: 50%;
+  background: #ffffff;
+  animation: wobble 1.4s ease-in-out infinite;
+}
+
+.buttonCenter {
+  width: 52px;
+  height: 52px;
+  border: 6px solid var(--text);
+  border-radius: 50%;
+  background: #ffffff;
+  animation: glow 1.4s ease-in-out infinite;
+}
+
+/* When the list is ready, the Poké Ball still shakes for 2 seconds,
+   then opens and shows the app */
+.done {
+  animation: hide 0s linear 2.9s forwards;
+}
+
+.done .top {
+  animation: openUp 0.9s cubic-bezier(0.7, 0, 0.3, 1) 2s forwards;
+}
+
+.done .bottom {
+  animation: openDown 0.9s cubic-bezier(0.7, 0, 0.3, 1) 2s forwards;
+}
+
+.done .button {
+  animation:
+    wobble 1.4s ease-in-out infinite,
+    buttonOut 0.4s ease-in 1.8s forwards;
+}
+
+@keyframes dots {
+  to {
+    width: 1.2em;
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+
+@keyframes hop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes wobble {
+  0%,
+  50%,
+  100% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(-14deg);
+  }
+  30% {
+    transform: rotate(12deg);
+  }
+  42% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    background: #ffffff;
+    box-shadow: 0 0 0 0 rgba(255, 83, 80, 0.6);
+  }
+  50% {
+    background: #ffd9d8;
+    box-shadow: 0 0 0 16px rgba(255, 83, 80, 0);
+  }
+}
+
+@keyframes openUp {
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes openDown {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes buttonOut {
+  to {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+@keyframes hide {
+  to {
+    visibility: hidden;
+  }
+}

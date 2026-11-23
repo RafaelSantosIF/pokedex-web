@@ -1,0 +1,226 @@
+/* Loading and error */
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 560px;
+  padding: 32px;
+  text-align: center;
+}
+
+.spinner {
+  animation: spin 0.9s linear infinite;
+}
+
+.muted {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.errorIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fef3f2;
+  font-size: 30px;
+  font-weight: 800;
+  color: #d92d20;
+}
+
+.errorText {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.backButton {
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.backButton:hover {
+  background: var(--surface-soft);
+}
+
+/* Two columns: image on the left, details on the right */
+.content {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  min-height: 560px;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px 32px;
+  overflow: hidden;
+  text-align: center;
+  background-image: radial-gradient(
+    circle at 50% 38%,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+}
+
+.heroPokeball {
+  position: absolute;
+  right: -80px;
+  bottom: -80px;
+  opacity: 0.3;
+  filter: brightness(0) invert(1);
+  transform: rotate(-20deg);
+}
+
+.shiny {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  height: 38px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.15s ease;
+}
+
+.shiny:hover {
+  transform: scale(1.06);
+}
+
+.shinyOn {
+  background: linear-gradient(135deg, #ffe082, #ffb74d);
+  box-shadow: 0 4px 14px rgba(255, 167, 38, 0.5);
+}
+
+.image {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 16px rgba(11, 26, 58, 0.25));
+  animation: float 3.5s ease-in-out infinite;
+}
+
+.number {
+  position: relative;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(11, 26, 58, 0.55);
+}
+
+.name {
+  position: relative;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.types {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* White border so the badge shows on a background of the same color */
+.types span {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 36px 26px;
+}
+
+.section {
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 22px 0 24px;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 14px 0 20px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--surface);
+}
+
+.total strong {
+  font-size: 16px;
+}
+
+/* Previous / next Pokémon */
+.nav {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding: 8px;
+  border-radius: 18px;
+  background: var(--surface-soft);
+}
+
+.navLink {
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background-color 0.15s ease;
+}
+
+.navLink:hover {
+  background: var(--surface);
+}
+
+.navNext {
+  margin-left: auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
