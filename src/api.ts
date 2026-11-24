@@ -5,8 +5,9 @@ import { MOCK_POKEMON } from "./mock";
 export const USE_MOCK = false;
 
 const BASE_URL = "https://pokeapi.co/api/v2";
+const REQUEST_TIMEOUT_MS = 100_000;
 
-export const TOTAL_POKEMON = 151;
+export const TOTAL_POKEMON = 1025;
 
 export type Stat = {
   name: string; // "hp", "attack", "defense", "special-attack", "special-defense", "speed"
@@ -84,13 +85,27 @@ async function fetchApiPokemon(id: number): Promise<ApiPokemon> {
   }
 
   if (!downloaded[id]) {
-    const response = await fetch(`${BASE_URL}/pokemon/${id}`, {
-      cache: "force-cache",
-    });
-    if (!response.ok) {
-      throw new Error(`Erro ao acessar a PokéAPI (código ${response.status}).`);
+    const signal = AbortSignal.timeout(REQUEST_TIMEOUT_MS);
+
+    try {
+      const response = await fetch(`${BASE_URL}/pokemon/${id}`, {
+        cache: "force-cache",
+        signal,
+      });
+      if (!response.ok) {
+        throw new Error(
+          `Erro ao acessar a PokéAPI (código ${response.status}).`,
+        );
+      }
+      downloaded[id] = await response.json();
+    } catch (e) {
+      if (signal.aborted) {
+        throw new Error(
+          "A PokéAPI demorou demais para responder. Verifique sua conexão e tente novamente.",
+        );
+      }
+      throw e;
     }
-    downloaded[id] = await response.json();
   }
   return downloaded[id];
 }

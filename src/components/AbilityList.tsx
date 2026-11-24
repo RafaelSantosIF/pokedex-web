@@ -5,7 +5,14 @@ type Props = {
   abilities: string[];
 };
 
-// TODO Questão 10: implement this component.
 export default function AbilityList({ abilities }: Props) {
-  return null;
+  return (
+    <div className={styles.list}>
+      {abilities.map((ability) => (
+        <span key={ability} className={styles.pill}>
+          {formatName(ability)}
+        </span>
+      ))}
+    </div>
+  );
 }

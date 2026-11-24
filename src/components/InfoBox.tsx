@@ -5,7 +5,11 @@ type Props = {
   value: string;
 };
 
-// TODO Questão 09: implement this component.
 export default function InfoBox({ label, value }: Props) {
-  return null;
+  return (
+    <div className={styles.box}>
+      <span className={styles.label}>{label}</span>
+      <span className={styles.value}>{value}</span>
+    </div>
+  );
 }

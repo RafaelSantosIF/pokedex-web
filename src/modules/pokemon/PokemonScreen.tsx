@@ -56,9 +56,9 @@ export default function PokemonScreen({ id }: Props) {
 
   let total = 0;
   for (const stat of pokemon.stats) {
-    total = stat.value;
+    total += stat.value;
   }
-
+  
   return (
     <Modal>
       <div className={styles.content}>

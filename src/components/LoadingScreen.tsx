@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./LoadingScreen.module.css";
+import { TOTAL_POKEMON } from "@/api";
 
 const STARTERS = [1, 4, 7, 25];
 
@@ -16,7 +17,7 @@ export default function LoadingScreen({ done = false }: Props) {
 
       <div className={styles.bottom}>
         <p className={styles.text}>
-          Carregando os 151 Pokémon
+          Carregando os {TOTAL_POKEMON} Pokémon
           <span className={styles.dots} />
         </p>
         <div className={styles.progress}>

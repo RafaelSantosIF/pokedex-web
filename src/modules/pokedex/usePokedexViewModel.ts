@@ -17,7 +17,7 @@ export function usePokedexViewModel(pokemons: Pokemon[]) {
   const filteredPokemons = pokemons.filter((pokemon) => {
     const matchesName = pokemon.name.includes(text);
     const matchesType =
-      selectedType === "" || pokemon.name.includes(selectedType);
+      selectedType === "" || pokemon.types.includes(selectedType);
     return matchesName && matchesType;
   });
 

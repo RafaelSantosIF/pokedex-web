@@ -5,7 +5,12 @@ type Props = {
   type: string;
 };
 
-// TODO Questão 08: implement this component.
 export default function TypeBadge({ type }: Props) {
-  return null;
+  const info = typeInfo(type);
+
+  return (
+    <span className={styles.badge} style={{ backgroundColor: info.color }}>
+      {info.label}
+    </span>
+  );
 }

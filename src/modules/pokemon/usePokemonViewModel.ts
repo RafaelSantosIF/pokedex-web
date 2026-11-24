@@ -8,25 +8,40 @@ export function usePokemonViewModel(id: number) {
   const [shiny, setShiny] = useState(false);
 
   useEffect(() => {
-    async function load() {
-      console.log("Carregando Pokémon", id);
+    let cancelled = false;
+
+    async function loadPokemon() {
       setLoading(true);
       setError(null);
+      setPokemon(null);
+      setShiny(false);
+
       try {
         const data = await fetchPokemon(id);
-        setPokemon(data);
+        if (!cancelled) {
+          setPokemon(data);
+        }
       } catch (e) {
-        setError((e as Error).message);
+        if (!cancelled) {
+          setError(
+            e instanceof Error ? e.message : "Não foi possível carregar o Pokémon.",
+          );
+        }
       } finally {
-        setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     }
 
-    load();
-  });
+    loadPokemon();
+    return () => {
+      cancelled = true;
+    };
+  }, [id]);
 
   function toggleShiny() {
-    setShiny(shiny);
+    setShiny((current) => !current);
   }
 
   return { pokemon, loading, error, shiny, toggleShiny };

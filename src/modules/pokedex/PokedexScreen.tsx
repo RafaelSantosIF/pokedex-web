@@ -66,12 +66,13 @@ export default function PokedexScreen({ pokemons, error }: Props) {
               type="search"
               placeholder="Buscar Pokémon pelo nome"
               value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
             <SearchIcon />
           </div>
 
           <p className={styles.count}>
-            <strong>{pokemons.length}</strong> Pokémon
+            <strong>{filteredPokemons.length}</strong> Pokémon
           </p>
         </header>
       </div>
@@ -112,7 +113,7 @@ export default function PokedexScreen({ pokemons, error }: Props) {
 
       {error ? <p className={styles.error}>{error}</p> : null}
 
-      {filteredPokemons.length > 0 && !error ? (
+      {filteredPokemons.length === 0 && !error ? (
         <div className={styles.empty}>
           <Pokeball size={56} className={styles.emptyIcon} />
           <p>Nenhum Pokémon encontrado.</p>
